@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Are Brewing Something Amazing</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans&display=swap">
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      font-family: 'Albert Sans', sans-serif;
+      background: url('werw.jpg') no-repeat center center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    /* Left-Side Content Alignment */
+    .coming-soon-container {
+      margin: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* Logo */
+    .logo {
+      width: 100px;
+      height: auto;
+    }
+
+    /* Main Brewing Text */
+    .brewing-text {
+      font-size: 4rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Countdown */
+    .countdown {
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 0.1rem;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Subtext */
+    .subtext {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+
+    .email-note {
+      font-size: 1rem;
+      color: #ddd;
+    }
+
+    /* Email Input and Submit Button */
+    .email-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .email-input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 2px solid white;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
+      width: 70%;
+      max-width: 400px;
+    }
+
+    .email-input::placeholder {
+      color: white;
+    }
+
+    .submit-btn {
+  width: fit-content;
+  padding: 8px 30px;
+  font-size: 1rem;
+  color: white;
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.submit-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: white;
+  z-index: 0;
+  transition: width 0.5s ease;
+}
+
+.submit-btn:hover::before {
+  width: 100%;
+}
+
+.submit-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+
+
+    /* Social Media Icons */
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-icons img {
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+      filter: brightness(1.5);
+    }
+
+    /* Bottom-Right Video */
+    .video-container {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      width: 200px;
+      height: 320px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 1.8);
+    }
+
+    .video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .brewing-text {
+        font-size: 3rem;
+      }
+
+      .countdown {
+        font-size: 2rem;
+      }
+
+      .email-input {
+        width: 90%;
+      }
+
+      .video-container {
+        width: 120px;
+        height: 200px;
+        bottom: 1rem;
+        right: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="coming-soon-container">
+  <!-- Logo -->
+  <img src="logo.png" alt="Logo" class="logo">
+
+  <!-- Brewing Text -->
+  <h1 class="brewing-text">We are brewing something <br>amazing</h1>
+
+  <!-- Countdown -->
+  <div class="countdown" id="countdown">00d 00h 00m 00s</div>
+
+  <!-- Subtext -->
+  <p class="subtext">Stay tuned for updates. Be the first to know when we launch!</p>
+  <p class="email-note">Sign up below to stay informed.</p>
+
+  <!-- Email Input and Submit Button -->
+  <form class="email-form">
+    <input type="email" class="email-input" placeholder="Enter your email" required>
+    <button class="submit-btn"><span>Submit</span></button>
+  </form>
+
+  <!-- Social Media Icons -->
+  <div class="social-icons">
+    <a href="https://instagram.com" target="_blank"><img src="i.png" alt="Instagram"></a>
+    <a href="https://facebook.com" target="_blank"><img src="f.png" alt="Facebook"></a>
+    <a href="https://twitter.com" target="_blank"><img src="x.png" alt="Twitter"></a>
+  </div>
+</div>
+
+<!-- Bottom-Right Video -->
+<div class="video-container">
+  <video src="vid.mp4" autoplay loop muted></video>
+</div>
+
+<!-- GSAP Animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  // GSAP Animations
+  gsap.from(".logo", { opacity: 0, x: -50, duration: 1 });
+  gsap.from(".brewing-text", { opacity: 0, x: -50, duration: 1, delay: 0.5 });
+  gsap.from(".email-form", { opacity: 0, y: 50, duration: 1, delay: 1.5 });
+  gsap.from(".social-icons", { opacity: 0, scale: 0.5, duration: 1, delay: 2 });
+
+  // Countdown Timer
+  const countdownElement = document.getElementById("countdown");
+  const targetDate = new Date("2025-12-31T23:59:59").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    if (distance < 0) {
+      countdownElement.textContent = "We have launched!";
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
