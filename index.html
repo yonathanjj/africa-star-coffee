@@ -234,25 +234,26 @@ const countdownElement = document.getElementById("countdown");
 
 // Calculate the target date for 2 months from now
 const today = new Date();
-const targetDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate());
+const targetDate = new Date(today.getFullYear(), today.getMonth() + 2, today.getDate()); 
 
-  function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
 
+  if (distance < 0) {
+    countdownElement.textContent = "We have launched!";
+    clearInterval(countdownInterval); // Stop the countdown after it reaches 0
+  } else {
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
     countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-    if (distance < 0) {
-      countdownElement.textContent = "We have launched!";
-    }
   }
+}
 
-  setInterval(updateCountdown, 1000);
+const countdownInterval = setInterval(updateCountdown, 1000);
 </script>
 </body>
 </html>
